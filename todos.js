@@ -44,9 +44,30 @@ avaObject.sayName();
 
 var toDosObject = {
     todos: ["this and that", " also some of this"],
-    displayDumbList: function() {
+    displaytoTodos: function() {
         console.log(this.todos);
-    }
+    },
+
+//don't we have to call the function outside of the object?
+
+//BOOLEANS
+
+    todos: [],
+addTodoList: function(toDoText) { //addToDo('hi')
+    this.todos.push({
+        toDoText: toDoText,
+        completed: false
+    });
+    this.displaytoTodos();
+}
 }
 
-toDosObject.displayDumbList();
+    toDosObject.displaytoTodos();
+    console.log(toDosObject.addTodoList("this is an object"));
+
+
+// }
+// var toDoBooleans = {
+//     todoText: "item 1",
+//     completed: false //boolean true or false
+//
