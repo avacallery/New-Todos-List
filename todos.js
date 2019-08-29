@@ -41,9 +41,12 @@ var avaObject = {
 }
 avaObject.sayName(); 
 
+///
+
 
 var toDosObject = {
-    todos: ["this and that", " also some of this"],
+    todos: [],
+    //todos: ["this and that", " also some of this"],
     displaytoTodos: function() {
         console.log(this.todos);
     },
@@ -52,22 +55,21 @@ var toDosObject = {
 
 //BOOLEANS
 
-    todos: [],
-addTodoList: function(toDoText) { //addToDo('hi')
+addTodoList: function(toDoText) { 
     this.todos.push({
         toDoText: toDoText,
         completed: false
     });
     this.displaytoTodos();
+}, 
+
+changeToDo: function(position, todoText) {
+    //this.todos[position] - newValue;
+    this.todos[position].todoText = todoText;
+    this.displaytoTodos(); 
+
 }
-}
-
-    toDosObject.displaytoTodos();
-    console.log(toDosObject.addTodoList("this is an object"));
-
-
-// }
-// var toDoBooleans = {
-//     todoText: "item 1",
-//     completed: false //boolean true or false
-//
+};
+    toDosObject.addTodoList("another task");
+    toDosObject.changeToDo(0, "first try"); 
+    toDosObject.addTodoList("this is an object");
