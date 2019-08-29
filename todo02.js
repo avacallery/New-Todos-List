@@ -29,24 +29,3 @@ function deleteToDo(position) {
 }
 
 deleteToDo(); 
-
-//OBJECTS
-
-var avaObject = { 
-    name: "Ava",
-    sayName: function() { 
-        console.log(this.name);
-//this is referring to the whole object
-    }
-}
-avaObject.sayName(); 
-
-
-var toDosObject = {
-    todos: ["this and that", " also some of this"],
-    displayDumbList: function() {
-        console.log(this.todos);
-    }
-}
-
-toDosObject.displayDumbList();
