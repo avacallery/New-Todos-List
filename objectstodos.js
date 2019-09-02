@@ -43,7 +43,6 @@ toggleCompleted: function(position) {
 }
 
 };
-    //toDosObject.toggleCompleted(); 
     toDosObject.addTodoList("boolean testing");
     toDosObject.changeToDo(0, "first try"); 
     toDosObject.toggleCompleted(0);

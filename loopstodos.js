@@ -44,9 +44,23 @@ var toDosObject = {
     deleteTodo: function(position) { 
         this.todos.splice(position, 1); 
         this.displayTodos();
-    }
+    },
+
+
+toggleCompleted: function(position) {
+    var todo = this.todos[position]; //var todo makes the code easier to read 
+    todo.completed = !todo.completed;
+    this.displayTodos();
+
+}
 
 }
 toDosObject.displayTodos(); 
-toDosObject.addToDo("first");  
-toDosObject.deleteTodo(0); 
+toDosObject.addToDo("second", "third", "fourth");  
+// toDosObject.deleteTodo(0); 
+toDosObject.toggleCompleted(0);
+toDosObject.toggleCompleted(0);
+toDosObject.toggleCompleted(0);
+
+//I can only get the toggleCompleted/ addToDo to work with only one argument.
+//How can I change my code so that it works with adding multiple todos? Do I need empty brackets?
