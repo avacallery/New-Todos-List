@@ -120,5 +120,11 @@ var view = {
             //shows the text for whatever you add to the list
             todosUl.appendChild(todoLi);
         }
+    },
+    createDeleteButton: function() {
+        var deleteButton = document.createElement("button");
+        deleteButton.textContent = "delete";
+        deleteButton.className  = "deleteButton";  
+        return deleteButton;
     }
 }; 
