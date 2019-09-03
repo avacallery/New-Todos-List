@@ -82,10 +82,12 @@ var handlers = {
         changeTodoTextInput.value = '';
         view.displayTodos(); 
     },
-    deleteTodo: function () {
-        var deleteTodoPositionInput = document.getElementById("deleteTodoPositionInput");
-        toDosObject.deleteTodo(deleteTodoPositionInput.valueAsNumber);
-        deleteTodoPositionInput.value = "";
+    deleteTodo: function (position) {
+        // var deleteTodoPositionInput = document.getElementById("deleteTodoPositionInput");
+        //we don't need this anymore because our delete buttons will have access to the todoId 
+        toDosObject.deleteTodo(position); 
+        // (deleteTodoPositionInput.valueAsNumber);
+        // // deleteTodoPositionInput.value = "";
         view.displayTodos(); 
     },
 
@@ -116,6 +118,11 @@ var view = {
                 todoTextWithCompletion = "( )" + todo.todoText;
             }
 
+            todoLi.id = i; 
+            //display todos is gonna iterate over our todos
+            //so i is gonna be equal to each position in our array
+            //and id accesses the element's id
+            //there should only be ONE id with this title
             todoLi.textContent = todoTextWithCompletion;
              //we want to append our delete button to TodoLi 
             todoLi.appendChild(this.createDeleteButton());
@@ -130,3 +137,36 @@ var view = {
         return deleteButton;
     }
 }; 
+
+var todosUl = document.querySelector('ul');
+
+todosUl.addEventListener("click", function(event) {
+   // console.log(event.target.parentNode.id);
+
+//function() in line 140 is the CALLBACK function inside of addEventListener, which is the HIGHER ORDER FUNCTION it's the function that takes other functions
+//when it runs function() it's gonna pass an eventObject 
+//What is this doing? When someone clicks on the delete button, addEventListener will run our callback function and pass in the eventObject, when you log out the event (target is what you clicked on/ Li element is the parentNode, and then the id, which is what we need to delete a specific item). 
+
+
+//Get the element that was clicked on
+var elementClicked = event.target; //event.target is the item clicked
+//check if elementClicked is a delete button 
+if (elementClicked.className === "deleteButton") {
+    elementClicked.parentNode.id
+//you are in the middle of last vid V10
+}
+
+}); 
+
+// //v10_li_elements
+// v11_nested_functions
+// v12_return_statement
+// v13_click_to_delete
+// v1_functions
+// v3_objects
+// v4_booleans
+// v5_loops
+// v6_toggleAll
+// v7_javascript_data_types
+// v8_HTML_DOM
+// v9_inputs
