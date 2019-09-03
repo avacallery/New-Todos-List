@@ -116,7 +116,9 @@ var view = {
                 todoTextWithCompletion = "( )" + todo.todoText;
             }
 
-            todoLi.textContent = todoTextWithCompletion; 
+            todoLi.textContent = todoTextWithCompletion;
+             //we want to append our delete button to TodoLi 
+            todoLi.appendChild(this.createDeleteButton());
             //shows the text for whatever you add to the list
             todosUl.appendChild(todoLi);
         }
