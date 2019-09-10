@@ -70,7 +70,7 @@ var handlers = {
         var addTodoTextInput = document.getElementById("addTodoTextInput");
         toDosObject.addToDo(addTodoTextInput.value);
         addTodoTextInput.value = ""; //this sets it to nothing after runs
-        view.displayTodos(); 
+        view.displayTodos();
     },
     changeTodo: function () {
         var changeTodoPositionInput = document.getElementById("changeTodoPositionInput");
@@ -80,26 +80,24 @@ var handlers = {
 
         changeTodoPositionInput.value = '';
         changeTodoTextInput.value = '';
-        view.displayTodos(); 
+        view.displayTodos();
     },
     deleteTodo: function (position) {
-        // var deleteTodoPositionInput = document.getElementById("deleteTodoPositionInput");
-        //we don't need this anymore because our delete buttons will have access to the todoId 
-        toDosObject.deleteTodo(position); 
-        // (deleteTodoPositionInput.valueAsNumber);
-        // // deleteTodoPositionInput.value = "";
-        view.displayTodos(); 
+        toDosObject.deleteTodo(position);
+        view.displayTodos();
     },
+    //this passes the position and takes that position to use it to 
+    //delete the item 
 
     toggleAll: function () {
         toDosObject.toggleAll();
-        view.displayTodos(); 
+        view.displayTodos();
     },
     toggleCompleted: function () {
         var toggleCompletedPositionInput = document.getElementById("toggleCompletedPositionInput");
         toDosObject.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
         toggleCompletedPositionInput.value = "";
-        view.displayTodos(); 
+        view.displayTodos();
     }
 };
 
@@ -109,8 +107,8 @@ var view = {
         todosUl.innerHTML = ""; // clears list
         for (var i = 0; i < toDosObject.todos.length; i++) {
             var todoLi = document.createElement('li');
-            var todo = toDosObject.todos[i]; 
-            var todoTextWithCompletion = ""; 
+            var todo = toDosObject.todos[i];
+            var todoTextWithCompletion = "";
 
             if (todo.completed === true) {
                 todoTextWithCompletion = "(x) " + todo.todoText;
@@ -118,44 +116,62 @@ var view = {
                 todoTextWithCompletion = "( ) " + todo.todoText;
             }
 
-            todoLi.id = i; 
+            todoLi.id = i;
             //display todos is gonna iterate over our todos
             //so i is gonna be equal to each position in our array
             //and id accesses the element's id
             //there should only be ONE id with this title
             todoLi.textContent = todoTextWithCompletion;
-             //we want to append our delete button to TodoLi 
+            //we want to append our delete button to TodoLi 
             todoLi.appendChild(this.createDeleteButton());
             //shows the text for whatever you add to the list
             todosUl.appendChild(todoLi);
         }
     },
-    createDeleteButton: function() {
+    createDeleteButton: function () {
         var deleteButton = document.createElement("button");
         deleteButton.textContent = "delete";
-        deleteButton.className  = "deleteButton";  
+        deleteButton.className = "deleteButton";
         return deleteButton;
+    },
+    setUpEventListeners: function () {
+        var todosUl = document.querySelector('ul');
+
+        todosUl.addEventListener('click', function (event){
+            var elementClicked = event.target;
+
+            if (elementClicked.className === 'deleteButton') {
+                handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+            }
+        }); 
     }
-}; 
+};
 
-var todosUl = document.querySelector('ul');
-
-todosUl.addEventListener("click", function(event) {
-   // console.log(event.target.parentNode.id);
-
-//function() in line 140 is the CALLBACK function inside of addEventListener, which is the HIGHER ORDER FUNCTION it's the function that takes other functions
-//when it runs function() it's gonna pass an eventObject 
-//What is this doing? When someone clicks on the delete button, addEventListener will run our callback function and pass in the eventObject, when you log out the event (target is what you clicked on/ Li element is the parentNode, and then the id, which is what we need to delete a specific item). 
+view.setUpEventListeners(); 
 
 
-//Get the element that was clicked on
-var elementClicked = event.target; //event.target is the item clicked
-//check if elementClicked is a delete button 
-if (elementClicked.className === "deleteButton") {
-    elementClicked.parentNode.id
-}
 
-}); 
+
+
+
+
+// var todosUl = document.querySelector('ul');
+
+// todosUl.addEventListener("click", function (event) {
+//     // console.log(event.target.parentNode.id);
+
+//     //function() in line 140 is the CALLBACK function inside of addEventListener, which is the HIGHER ORDER FUNCTION it's the function that takes other functions
+//     //when it runs function() it's gonna pass an eventObject 
+//     //What is this doing? When someone clicks on the delete button, addEventListener will run our callback function and pass in the eventObject, when you log out the event (target is what you clicked on/ Li element is the parentNode, and then the id, which is what we need to delete a specific item). 
+
+
+//     //Get the element that was clicked on
+//     var elementClicked = event.target; //event.target is the item clicked
+//     //check if elementClicked is a delete button 
+//     if (elementClicked.className === "deleteButton") {
+//         handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+//     }
+// });
 
 // //v10_li_elements
 // v11_nested_functions
