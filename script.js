@@ -153,7 +153,6 @@ var elementClicked = event.target; //event.target is the item clicked
 //check if elementClicked is a delete button 
 if (elementClicked.className === "deleteButton") {
     elementClicked.parentNode.id
-//you are in the middle of last vid V10
 }
 
 }); 
