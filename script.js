@@ -127,6 +127,9 @@ var view = {
             //shows the text for whatever you add to the list
             todosUl.appendChild(todoLi);
         }
+
+        
+        //instead of adding an eventListener on every single delete button, you can add one single one on the closing Ul element and listen for clicks there. Whenever something is clicked on the Ul, like the delete button, you can look at the event Object to see excactly the element that is clicked on. If it is a delete button - we are running the handlers.deleteTodo. 
     },
     createDeleteButton: function () {
         var deleteButton = document.createElement("button");
