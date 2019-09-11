@@ -45,16 +45,32 @@ var toDosObject = {
         var totalTodos = this.todos.length;
         var completedTodos = 0;
 
-        for (var i = 0; i < totalTodos; i++) {
-            if (this.todos[i].completed === true) {
+        // for (var i = 0; i < totalTodos; i++) {
+        //     if (this.todos[i].completed === true) {
+        //         completedTodos++;
+        //     }
+        // }
+        
+        //We want to iterate over this.todos
+        this.todos.forEach(function(todo) {
+            if (todo.completed === true) {
                 completedTodos++;
-            }
-        }
+                }
+        });
+
         //Case 1: If everything is true, make everything false
         if (completedTodos === totalTodos) {
-            for (var i = 0; i < totalTodos; i++) {
-                this.todos[i].completed = false;
-            }
+            // for (var i = 0; i < totalTodos; i++) {
+            //     this.todos[i].completed = false;
+            // }
+            this.todos.forEach(function(todo) {
+                todo.completed = false; 
+
+
+            });
+
+
+
             //Case 2: Otherwise, make everything false
         } else {
             for (var i = 0; i < totalTodos; i++) {
@@ -128,7 +144,7 @@ var view = {
             todosUl.appendChild(todoLi);
         }
 
-        
+
         //instead of adding an eventListener on every single delete button, you can add one single one on the closing Ul element and listen for clicks there. Whenever something is clicked on the Ul, like the delete button, you can look at the event Object to see excactly the element that is clicked on. If it is a delete button - we are running the handlers.deleteTodo. 
     },
     createDeleteButton: function () {
